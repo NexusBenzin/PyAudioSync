@@ -2,26 +2,17 @@ import re
 import sounddevice as sd
 
 
-class NoDevicesFoundError(Exception):
-    pass
+
 class AudioDeviceManager:
     def __init__(self):
         self.devices = sd.query_devices()
 
 
-
-
-
-
-
-
-
-
-
-    def get_output_devices(self):
+    def get_output_devices():
+        devices = sd.query_devices()
         seen_names = set()
         result = []
-        for i, device in enumerate(self.devices):
+        for i, device in enumerate(devices):
             if device['max_output_channels'] > 0:
                 name = device['name']
                 normalized = re.sub(r'\s*\(.*?\)', '', name)
@@ -36,6 +27,6 @@ class AudioDeviceManager:
                     })
 
         if not result:
-            raise NoDevicesFoundError("No output devices were detected on this system.")
+            raise RuntimeError("No audio output devices found.")
 
         return result
