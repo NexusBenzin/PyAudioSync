@@ -4,9 +4,6 @@ import requests
 
 
 
-#res = requests.get("https://dummyjson.com/quotes/random")
-#data = res.json()
-#print(f"{data["quote"]} - {data['author']}")
 
 
 class AudioDeviceManager:

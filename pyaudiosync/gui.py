@@ -1,10 +1,14 @@
 import tkinter
 
-def gui(device_list):
+
+
+
+
+def gui(device_list, quote):
     root = tkinter.Tk()
     root.title("PyAudioSync")
 
-    Label = tkinter.Label(root, text="PyAudioSync")
+    Label = tkinter.Label(root, text=quote)
     Label.pack()
 
     listbox = tkinter.Listbox(root, height=20, width=100)
