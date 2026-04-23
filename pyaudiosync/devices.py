@@ -4,17 +4,17 @@ import requests
 
 
 
-res = requests.get("https://dummyjson.com/quotes/random")
-data = res.json()
-print(f"{data["quote"]} - {data['author']}")
+#res = requests.get("https://dummyjson.com/quotes/random")
+#data = res.json()
+#print(f"{data["quote"]} - {data['author']}")
 
 
 class AudioDeviceManager:
     def __init__(self):
         self.devices = sd.query_devices()
 
-
-    def get_output_devices():
+    @staticmethod
+    def get_devices():
         devices = sd.query_devices()
         seen_names = set()
         result = []
@@ -36,3 +36,5 @@ class AudioDeviceManager:
             raise RuntimeError("No audio output devices found.")
 
         return result
+
+
