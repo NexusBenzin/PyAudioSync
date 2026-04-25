@@ -1,13 +1,10 @@
-import requests
-from pyaudiosync.devices import AudioDeviceManager
-from pyaudiosync.gui import gui
+from devices import AudioDeviceManager
+from gui import gui
+from quote import get_quote
+
 
 devices = AudioDeviceManager.get_devices()
 
 
-res = requests.get("https://dummyjson.com/quotes/random")
-data = res.json()
-
-
-
-gui(device_list=devices, quote=(f"{data["quote"]} - {data['author']}"))
+quote_data = get_quote()
+gui(device_list=devices, quote=(f"{quote_data["quote"]} - {quote_data['author']}"))
