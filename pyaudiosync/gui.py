@@ -1,7 +1,5 @@
 import tkinter
-from pyaudiosync.devices import AudioDeviceManager
-
-beep = AudioDeviceManager
+from playing_sounds import play_beep
 
 
 def gui(device_list, quote):
@@ -30,12 +28,19 @@ def gui(device_list, quote):
             value = event.widget.get(index)
 
 
-            selected_device = value.split(" ")[1].replace(":", " ")
-            print(f"current device: {selected_device}")
+            try:
+                raw_id = value.split(" ")[1].replace(":", " ")
+                selected_device = int(raw_id)
+                print(f"current device: {selected_device}")
+            except:
+                print("Could not retrieve device id")
+
+
+
 
     listbox.bind("<<ListboxSelect>>", on_click)
 
-    btn = tkinter.Button(root, text="Test device", command=lambda: beep.play_beep(int(selected_device)) if selected_device else print("No device selected"))
+    btn = tkinter.Button(root, text="Test device", command=lambda: play_beep(selected_device) if selected_device else print("No device selected"))
     btn.pack()
 
     listbox.pack()
