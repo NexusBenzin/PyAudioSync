@@ -24,7 +24,7 @@
 | Audio I/O | `sounddevice` / `pyaudio` |
 | DSP / EQ | `numpy`, `scipy.signal` |
 | Low-latency sync | JACK (Linux), ASIO (Windows) |
-| GUI | `PyQt6` or `Dear PyGui` |
+| GUI | `Tkinter` |
 | Config management | `json` / `toml` |
 
 ---
