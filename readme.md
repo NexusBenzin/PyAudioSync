@@ -37,7 +37,7 @@ Once implemented, PyAudioSync will work roughly like this:
 # Install dependencies
 pip install -r requirements.txt
 
-# Launch the GUI
+# Launch PyAudioSync
 python main.py
 ```
 ## 🗺️ Roadmap
