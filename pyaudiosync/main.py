@@ -4,6 +4,7 @@ from pyaudiosync.gui import gui
 
 devices = AudioDeviceManager.get_devices()
 
+
 res = requests.get("https://dummyjson.com/quotes/random")
 data = res.json()
 

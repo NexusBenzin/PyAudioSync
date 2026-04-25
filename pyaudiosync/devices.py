@@ -1,6 +1,6 @@
 import re
 import sounddevice as sd
-import requests
+import numpy as np
 
 
 
@@ -33,5 +33,17 @@ class AudioDeviceManager:
             raise RuntimeError("No audio output devices found.")
 
         return result
+
+    @staticmethod
+    def play_beep(device_id, frequency=440, duration=1):
+        fs = 44100
+        t = np.linspace(0, duration, int(fs * duration), False)
+        beep = 0.5 * np.sin(2 * np.pi * frequency * t)
+
+        sd.play(beep, samplerate=fs, device=(device_id))
+        sd.wait()
+
+
+
 
 
