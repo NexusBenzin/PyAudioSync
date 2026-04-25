@@ -21,8 +21,8 @@
 
 | Component | Library / Tool |
 |---|---|
-| Audio I/O | `sounddevice` / `pyaudio` |
-| DSP / EQ | `numpy`, `scipy.signal` |
+| Audio I/O | `sounddevice` |
+| DSP / EQ | `numpy` |
 | Low-latency sync | JACK (Linux), ASIO (Windows) |
 | GUI | `Tkinter` |
 | Config management | `json` / `toml` |
