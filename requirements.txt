@@ -1,5 +1,3 @@
 sounddevice
 requests
-tkinter
-re
 numpy
