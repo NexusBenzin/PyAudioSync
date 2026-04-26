@@ -10,6 +10,6 @@ def get_quote():
     except:
         data = ({
             "quote": "Random quote could not be retrieved (Maybe you are not connected to internet?)",
-            "author": "Random quote could not be retrieved (Maybe you are not connected to internet?)"})
+            "author": ""})
         return data
     return data
