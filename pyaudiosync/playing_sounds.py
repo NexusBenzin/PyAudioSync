@@ -6,7 +6,8 @@ def play_beep(device_id, frequency=440, duration=1):
     fs = 44100
     t = np.linspace(0, duration, int(fs * duration), False)
     beep = 0.5 * np.sin(2 * np.pi * frequency * t)
-    print(f"playing to device {device_id}")
+    if device_id != 0:
+        print(f"playing to device {device_id}")
 
     if device_id != 0:
         try:
