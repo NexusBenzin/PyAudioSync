@@ -1,3 +1,4 @@
+import errors
 import re
 import sounddevice as sd
 
@@ -26,7 +27,7 @@ class AudioDeviceManager:
                     })
 
         if not result:
-            raise RuntimeError("No audio output devices found.")
+            errors.error("No audio output devices found.")
 
         return result
 

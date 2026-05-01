@@ -1,3 +1,4 @@
+import errors
 import requests
 
 
@@ -8,8 +9,5 @@ def get_quote():
         data = res.json()
         print(data)
     except:
-        data = ({
-            "quote": "Random quote could not be retrieved (Maybe you are not connected to internet?)",
-            "author": ""})
-        return data
+        errors.error("Could not recieve quote (Maybe you are not connected to the internet?)")
     return data

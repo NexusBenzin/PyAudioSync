@@ -1,3 +1,4 @@
+import errors
 import tkinter
 import playing_sounds as pyas
 
@@ -38,7 +39,7 @@ def gui(device_list, quote):
                 selected_devices.append(device_id_int)
                 print(f"Added device ID: {device_id_int}")
             except (ValueError, IndexError):
-                print("Could not retrieve device id from selection")
+                errors.error("Could not retrieve device id from selection")
 
 
 
