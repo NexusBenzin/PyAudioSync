@@ -1,3 +1,4 @@
 sounddevice
 requests
 numpy
+customtkinter

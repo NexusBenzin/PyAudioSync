@@ -1,65 +1,44 @@
 import errors
-import tkinter
+import customtkinter
 import playing_sounds as pyas
 
 
 
 
 def gui(device_list, quote):
-    selected_devices = None
+    selected_devices = set()
 
-    root = tkinter.Tk()
+    root = customtkinter.CTk()
     root.title("PyAudioSync")
-    root.geometry("800x500")
+    root.geometry("1920x1080")
 
-    Label = tkinter.Label(root, text=quote)
+    Label = customtkinter.CTkLabel(root, text=quote)
     Label.pack()
 
-    listbox = tkinter.Listbox(root, height=20, width=100, selectmode=tkinter.MULTIPLE)
-    for i in device_list:
-        display_text = f"ID {i['id']}: {i['name']}"
-        listbox.insert(tkinter.END, display_text)
+    listbox = customtkinter.CTkScrollableFrame(root, width=600, height=600)
+    listbox.pack()
 
-    def unselect():
-        nonlocal selected_devices
-        listbox.selection_clear(0, tkinter.END)
-        selected_devices = []
-        print("current device: None")
 
-    def on_click(event):
-        nonlocal selected_devices
-        indices = listbox.curselection()
-        selected_devices = []
+    def toggle_device(device_id):
+        if device_id in selected_devices:
+            selected_devices.remove(device_id)
+        else:
+            selected_devices.add(device_id)
 
-        for i in indices:
-            value = listbox.get(i)
-            try:
-                raw_id = value.split(" ")[1].replace(":", "")
-                device_id_int = int(raw_id)
-                selected_devices.append(device_id_int)
-                print(f"Added device ID: {device_id_int}")
-            except (ValueError, IndexError):
-                errors.error("Could not retrieve device id from selection")
+    for device in device_list:
+        row_frame = customtkinter.CTkFrame(listbox, fg_color="transparent")
+        row_frame.pack(fill="x", pady=5, padx=5 )
 
 
 
+        cb = customtkinter.CTkCheckBox(row_frame, text="", width=24, command=lambda d_id=device['id']: toggle_device(d_id))
+        cb.pack(side="left", anchor="n")
 
 
+        label = customtkinter.CTkLabel(row_frame, text=f"ID {device['id']}: {device['name']}", wraplength=350, justify="left")
+        label.pack(side="left", padx=5, fill="x")
 
-    listbox.bind("<<ListboxSelect>>", on_click)
-
-    btn = tkinter.Button(root, text="Test selected", command=lambda: pyas.play_multiple(selected_devices) if selected_devices is not None else print("No device selected"))
+    btn = customtkinter.CTkButton(root, text="Test selected", command=lambda: pyas.play_multiple(list(selected_devices)) if selected_devices else print("No device selected"))
     btn.pack()
 
-    btn2 = tkinter.Button(root, text="Unselect Device", command=unselect)
-    btn2.pack(pady=5)
-
-    listbox.pack()
     root.mainloop()
-
-
-
-
-
-
-

@@ -1,15 +1,15 @@
-import tkinter
+import customtkinter
 
 def error(msg = "Error: Null"):
-    root = tkinter.Tk()
-    root.geometry("400x100")
+    root = customtkinter.CTk()
+    root.geometry("600x200")
     root.title("Error")
 
-    label = tkinter.Label(root, text="PyAudioSync Error")
+    label = customtkinter.CTkLabel(root, text="PyAudioSync Error")
     label.pack()
 
-    text = tkinter.Text()
-    text.insert(tkinter.END, msg)
+    text = customtkinter.CTkTextbox(root, width=600, height=10)
+    text.insert(customtkinter.END, msg)
     text.pack()
 
     root.mainloop()
