@@ -15,14 +15,15 @@ class AudioDeviceManager:
         for i, device in enumerate(devices):
             if device['max_output_channels'] > 0:
                 name = device['name']
-                normalized = re.sub(r'\s*\(.*?\)', '', name)
+                clean_name = name.split(" (@")[0]
+                normalized = re.sub(r'\s*\(.*?\)', '', clean_name)
                 normalized = re.sub(r'\s+\d+$', '', normalized).strip()
-                normalized = normalized.lower()
-                if normalized not in seen_names:
-                    seen_names.add(normalized)
+
+                if normalized.lower() not in seen_names:
+                    seen_names.add(normalized.lower())
                     result.append({
                         "id": i,
-                        "name": name,
+                        "name": clean_name,  # Return the cleaner version
                         "channels": device['max_output_channels']
                     })
 
