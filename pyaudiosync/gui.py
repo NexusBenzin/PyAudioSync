@@ -1,7 +1,8 @@
 import errors
 import customtkinter
-import playing_sounds as pyas
-import create_array as ca
+import test
+import play_file as pf
+
 
 
 
@@ -38,7 +39,10 @@ def gui(device_list, quote):
         label = customtkinter.CTkLabel(row_frame, text=f"ID {device['id']}: {device['name']}", wraplength=350, justify="left")
         label.pack(side="left", padx=5, fill="x")
 
-    btn = customtkinter.CTkButton(root, text="Test selected", command=lambda: pyas.play_multiple(list(selected_devices)) if selected_devices else print("No device selected"))
+    btn = customtkinter.CTkButton(root, text="Test selected", command=lambda: test.test_multiple(list(selected_devices)) if selected_devices else print("No device selected"))
     btn.pack()
+
+    btn2 = customtkinter.CTkButton(root, text="Play file on selected", command=lambda: pf.play_file_multiple(list(selected_devices)) if selected_devices else print("No device selected"))
+    btn2.pack(pady=5)
 
     root.mainloop()

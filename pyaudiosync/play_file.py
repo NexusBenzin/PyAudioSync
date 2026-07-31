@@ -1,8 +1,10 @@
-import sounddevice as sd
-import soundfile as sf
 import errors
+import threading
+import soundfile as sf
+import sounddevice as sd
 
-def play_file():
+
+def play_file_single(device_id):
     try:
         file = ("file.mp3")
     except Exception as e:
@@ -15,10 +17,14 @@ def play_file():
         errors.error(f"Couldn't read file {file} with error: {e}, Does the file exist and contain audio?")
 
     try:
-        sd.play(data, samplerate=fs)
+        sd.play(data, samplerate=fs, device=device_id)
         sd.wait()
     except Exception as e:
         errors.error(f"Couldn't play file {file} with error: {e}")
 
-
-play_file()
+def play_file_multiple(device_ids):
+    threads = []
+    for i in device_ids:
+        t = threading.Thread(target=play_file_single, args=(i,))
+        threads.append(t)
+        t.start()

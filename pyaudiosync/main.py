@@ -11,3 +11,4 @@ gui(device_list=devices, quote=(f"{quote_data['quote']} - {quote_data['author']}
 
 
 
+  
