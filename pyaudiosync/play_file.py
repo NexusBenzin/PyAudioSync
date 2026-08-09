@@ -1,5 +1,4 @@
 import numpy as np
-
 import errors
 import threading
 import soundfile as sf
@@ -49,13 +48,16 @@ def play_file_single(device_id, filepath="file.mp3", blocksize=1024):
         errors.error(f"Couldn't play file {filepath} with error: {e}")
 
 def play_file_multiple(device_ids, filepath="file.mp3"):
-    def _runner():
-        threads = []
-        for i in device_ids:
-            t = threading.Thread(target=play_file_single, kwargs={"device_id": i, "filepath": filepath})
-            threads.append(t)
-            t.start()
+    try:
+        def _runner():
+            threads = []
+            for i in device_ids:
+                t = threading.Thread(target=play_file_single, kwargs={"device_id": i, "filepath": filepath})
+                threads.append(t)
+                t.start()
 
-        for t in threads:
-            t.join()
-    threading.Thread(target=_runner, daemon=True).start()
+            for t in threads:
+                t.join()
+        threading.Thread(target=_runner, daemon=True).start()
+    except Exception as e:
+        errors.error(f"Could not start multi-threading: {e}")
