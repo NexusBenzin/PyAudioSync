@@ -9,5 +9,5 @@ def get_quote():
         data = res.json()
         print(data)
     except:
-        errors.error("Could not recieve quote (Maybe you are not connected to the internet?)")
+        errors.error("Could not receive quote (Are not connected to the internet?)")
     return data
