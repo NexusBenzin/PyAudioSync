@@ -9,10 +9,9 @@
 - **Multi-device playback** — Route audio to multiple output devices simultaneously
 - **Synchronized playback** — Keep all devices in sync using low-latency audio backends (JACK / ASIO)
 - **Graphic & parametric EQ** — Per-device equalizer with configurable bands
-- **Audio routing matrix** — Flexible routing between inputs and outputs
+- **Audio routing matrix** — Flexible routing of outputs
 - **Real-time DSP** — Low-latency audio processing powered by `numpy` and `scipy`
 - **Device management** — Detect, configure, and manage all connected audio devices
-- **Profiles & presets** — Save and load EQ and routing configurations
 - **Cross-platform** — Windows, Linux, and macOS support planned
 
 ---
@@ -25,20 +24,8 @@
 | DSP / EQ | `numpy` |
 | Low-latency sync | `JACK` (Linux), `ASIO` (Windows) |
 | GUI | `CustomTkinter` |
-| Config management | `json` / `toml` |
 
 ---
-
-## 📋 Usage (Planned)
-
-Once implemented, PyAudioSync will work roughly like this:
-
-```bash
-# Install dependencies
-pip install -r requirements.txt
-
-# Launch PyAudioSync
-python main.py
 ```
 ## 🗺️ Roadmap
 

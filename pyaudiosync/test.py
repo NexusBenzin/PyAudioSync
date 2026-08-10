@@ -1,23 +1,61 @@
+import numpy as np
+
 import errors
 import threading
-import numpy as np
+import soundfile as sf
 import sounddevice as sd
 
+global_lock = threading.Lock()
 
-def test_single(device_id, beep, fs):
+
+def test_single(device_id, filepath="testing_file/file.mp3", blocksize=1024):
+
     try:
-        sd.play(beep, samplerate=fs, device=device_id)
-        sd.wait()
+        data, fs = sf.read(filepath, dtype='float32')
     except Exception as e:
-        errors.error(f"Error with device {device_id}: {e}")
+        errors.error(f"Couldn't read file {filepath} with error: {e}, Does the file exist and contain audio?")
 
-def test_multiple(device_ids, frequency=440, duration=1):
-    fs = 44100
-    t = np.linspace(0, duration, int(duration * fs), False)
-    beep = 0.5 * np.sin(2 * np.pi * frequency * t)
+    if data.ndim == 1:
+        channels = 1
+        data = data.reshape(-1, 1)
+    else:
+        channels = int(data.shape[1])
 
-    threads = []
-    for i in device_ids:
-        t = threading.Thread(target=test_single, args=(i, beep, fs))
-        threads.append(t)
-        t.start()
+    data = np.ascontiguousarray(data, dtype=np.float32)
+
+    try:
+        with global_lock:
+            stream = sd.OutputStream(samplerate=int(fs), device=device_id, channels=channels, dtype='float32', blocksize=int(blocksize))
+            stream.start()
+
+        try:
+            total_samples = len(data)
+            for i in range(0, len(data), blocksize):
+                chunk = data[i:i + blocksize]
+                chunk_len = len(chunk)
+
+                if chunk_len < blocksize:
+                    pad_len = int(blocksize - chunk_len)
+                    padding = np.zeros((pad_len, channels), dtype=np.float32)
+                    chunk = np.vstack((chunk, padding))
+
+                stream.write(np.ascontiguousarray(chunk))
+        finally:
+            with global_lock:
+                stream.stop()
+                stream.close()
+
+    except Exception as e:
+        errors.error(f"Couldn't play file {filepath} with error: {e}")
+
+def test_multiple(device_ids, filepath="file.mp3"):
+    def _runner():
+        threads = []
+        for i in device_ids:
+            t = threading.Thread(target=test_single, kwargs={"device_id": i, "filepath": filepath})
+            threads.append(t)
+            t.start()
+
+        for t in threads:
+            t.join()
+    threading.Thread(target=_runner, daemon=True).start()

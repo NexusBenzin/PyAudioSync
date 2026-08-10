@@ -20,16 +20,18 @@ def gui(device_list, quote):
 
     selected_devices = set()
 
-    root = customtkinter.CTk()
-    root.title("PyAudioSync")
-    root.geometry("1920x1080")
+    try:
+        root = customtkinter.CTk()
+        root.title("PyAudioSync")
+        root.geometry("1920x1080")
 
-    Label = customtkinter.CTkLabel(root, text=quote)
-    Label.pack()
+        Label = customtkinter.CTkLabel(root, text=quote)
+        Label.pack()
 
-    listbox = customtkinter.CTkScrollableFrame(root, width=600, height=600)
-    listbox.pack()
-
+        listbox = customtkinter.CTkScrollableFrame(root, width=600, height=600)
+        listbox.pack()
+    except Exception as e:
+        errors.error(f"Could not create main GUI: {e}")
 
     def toggle_device(device_id):
         if device_id in selected_devices:
