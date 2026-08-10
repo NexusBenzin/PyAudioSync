@@ -2,11 +2,22 @@ import errors
 import customtkinter
 import test
 import play_file as pf
+from tkinter import filedialog
 
-
+file = None
 
 
 def gui(device_list, quote):
+
+    def select_file():
+        global file
+        path = filedialog.askopenfilename(title="Select file", filetypes=[("Audio Files", ".mp3"), ("All Files", "*.*")])
+        if not path:
+            errors.error("No file selected")
+        file = path
+
+
+
     selected_devices = set()
 
     root = customtkinter.CTk()
@@ -39,10 +50,13 @@ def gui(device_list, quote):
         label = customtkinter.CTkLabel(row_frame, text=f"ID {device['id']}: {device['name']}", wraplength=350, justify="left")
         label.pack(side="left", padx=5, fill="x")
 
-    btn = customtkinter.CTkButton(root, text="Test selected", command=lambda: test.test_multiple(list(selected_devices)) if selected_devices else print("No device selected"))
-    btn.pack()
+    btn_test = customtkinter.CTkButton(root, text="Test selected", command=lambda: test.test_multiple(list(selected_devices)) if selected_devices else print("No device selected"))
+    btn_test.pack()
 
-    btn2 = customtkinter.CTkButton(root, text="Play file on selected", command=lambda: pf.play_file_multiple(list(selected_devices)) if selected_devices else print("No device selected"))
-    btn2.pack(pady=5)
+    btn_play = customtkinter.CTkButton(root, text="Play file on selected", command=lambda: pf.play_file_multiple(list(selected_devices), file) if selected_devices else errors.error("No device selected"))
+    btn_play.pack(pady=5)
+
+    btn_select_file = customtkinter.CTkButton(root, text="Select file", command=lambda: select_file())
+    btn_select_file.pack(pady=5)
 
     root.mainloop()

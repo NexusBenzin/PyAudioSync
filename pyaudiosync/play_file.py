@@ -4,9 +4,9 @@ import soundfile as sf
 import sounddevice as sd
 
 
-def play_file_single(device_id):
+def play_file_single(device_id, path):
     try:
-        file = ("file.mp3")
+        file = (path)
     except Exception as e:
         # errors.error(f"Couldn't find file {file} with error: {e}, Does file exist?"
         print(e)
@@ -22,9 +22,9 @@ def play_file_single(device_id):
     except Exception as e:
         errors.error(f"Couldn't play file {file} with error: {e}")
 
-def play_file_multiple(device_ids):
+def play_file_multiple(device_ids, path):
     threads = []
     for i in device_ids:
-        t = threading.Thread(target=play_file_single, args=(i,))
+        t = threading.Thread(target=play_file_single, args=(i, path))
         threads.append(t)
         t.start()
