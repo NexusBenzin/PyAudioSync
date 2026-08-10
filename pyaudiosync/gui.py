@@ -11,7 +11,7 @@ def gui(device_list, quote):
 
     def select_file():
         global file
-        path = filedialog.askopenfilename(title="Select file", filetypes=[("Audio Files", ".mp3"), ("All Files", "*.*")])
+        path = filedialog.askopenfilename(title="Select file", filetypes=[("Audio Files", "*.mp3 *.wav *.ogg *.aac *.flac *.alac *.aiff")])
         if not path:
             errors.error("No file selected")
         file = path
@@ -59,6 +59,6 @@ def gui(device_list, quote):
     btn_play.pack(pady=5)
 
     btn_select_file = customtkinter.CTkButton(root, text="Select file", command=lambda: select_file())
-    btn_select_file.pack(pady=5)
+    btn_select_file.pack(pady=0)
 
     root.mainloop()

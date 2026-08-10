@@ -1,6 +1,7 @@
 from devices import AudioDeviceManager
 from gui import gui
 from quote import get_quote
+import errors
 
 try:
     devices = AudioDeviceManager.get_devices()
