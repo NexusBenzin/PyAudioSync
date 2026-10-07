@@ -30,9 +30,9 @@
 # 🗺️ Roadmap
 
 ## Phase 1 — Core Audio Engine
-- [ ] Enumerate and list all available audio devices
-- [ ] Play audio to a single output device
-- [ ] Play the same stream to multiple devices simultaneously
+- [x] Enumerate and list all available audio devices
+- [x] Play audio to a single output device
+- [x] Play the same stream to multiple devices simultaneously
 
 
 ## Phase 2 — Sync & Routing
@@ -48,7 +48,7 @@
 - [ ] Low-latency DSP pipeline
 
 ## Phase 4 — GUI & Polish
-- [ ] Full GUI
+- [x] Full GUI
 - [ ] EQ visualizer (frequency response curve)
 - [ ] Save/load configuration profiles
 
