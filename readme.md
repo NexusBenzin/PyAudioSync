@@ -33,7 +33,7 @@
 - [ ] Enumerate and list all available audio devices
 - [ ] Play audio to a single output device
 - [ ] Play the same stream to multiple devices simultaneously
-- [ ] Basic volume control per device
+
 
 ## Phase 2 — Sync & Routing
 - [ ] Implement clock sync for multi-device playback
@@ -48,9 +48,13 @@
 - [ ] Low-latency DSP pipeline
 
 ## Phase 4 — GUI & Polish
-- [ ] Full GUI with device manager
+- [ ] Full GUI
 - [ ] EQ visualizer (frequency response curve)
 - [ ] Save/load configuration profiles
+
+
+## Phase 5 - Other not important features
+- [ ] Basic volume control per 
 - [ ] Installer & packaging
 
 ---
