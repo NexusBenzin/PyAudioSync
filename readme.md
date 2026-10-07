@@ -27,27 +27,27 @@ i# 🎵 PyAudioSync
 
 ---
 ```
-### 🗺️ Roadmap
+# 🗺️ Roadmap
 
-### Phase 1 — Core Audio Engine
+## Phase 1 — Core Audio Engine
 - [ ] Enumerate and list all available audio devices
 - [ ] Play audio to a single output device
 - [ ] Play the same stream to multiple devices simultaneously
 - [ ] Basic volume control per device
 
-### Phase 2 — Sync & Routing
+## Phase 2 — Sync & Routing
 - [ ] Implement clock sync for multi-device playback
 - [ ] JACK backend support (Linux)
 - [ ] ASIO backend support (Windows)
 - [ ] Audio routing matrix (many-to-many)
 
-### Phase 3 — EQ & DSP
+## Phase 3 — EQ & DSP
 - [ ] Graphic EQ (10-band)
 - [ ] Parametric EQ (per-device)
 - [ ] Real-time filter preview
 - [ ] Low-latency DSP pipeline
 
-### Phase 4 — GUI & Polish
+## Phase 4 — GUI & Polish
 - [ ] Full GUI with device manager
 - [ ] EQ visualizer (frequency response curve)
 - [ ] Save/load configuration profiles
