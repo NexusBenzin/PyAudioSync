@@ -1,4 +1,4 @@
-i# 🎵 PyAudioSync
+# 🎵 PyAudioSync
 
 > A Python application for syncing audio playback across multiple devices with real-time equalization and advanced routing configuration.
 
@@ -26,7 +26,7 @@ i# 🎵 PyAudioSync
 | GUI | `CustomTkinter` |
 
 ---
-```
+
 # 🗺️ Roadmap
 
 ## Phase 1 — Core Audio Engine
