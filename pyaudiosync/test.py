@@ -1,9 +1,11 @@
-import numpy as np
-
-import errors
-import threading
-import soundfile as sf
-import sounddevice as sd
+try:
+    import numpy as np
+    import errors
+    import threading
+    import soundfile as sf
+    import sounddevice as sd
+except Exception as e
+    errors.error(f"Error {e}")
 
 global_lock = threading.Lock()
 
