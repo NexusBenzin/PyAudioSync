@@ -1,8 +1,11 @@
-import numpy as np
-import errors
-import threading
-import soundfile as sf
-import sounddevice as sd
+try:
+    import numpy as np
+    import errors
+    import threading
+    import soundfile as sf
+    import sounddevice as sd
+except Exception as e:
+    print(e)
 
 global_lock = threading.Lock()
 
@@ -14,11 +17,14 @@ def play_file_single(device_id, filepath="file.mp3", blocksize=1024):
     except Exception as e:
         errors.error(f"Couldn't read file {filepath} with error: {e}, Does the file exist and contain audio?")
 
-    if data.ndim == 1:
-        channels = 1
-        data = data.reshape(-1, 1)
-    else:
-        channels = int(data.shape[1])
+    try:
+        if data.ndim == 1:
+            channels = 1
+            data = data.reshape(-1, 1)
+        else:
+            channels = int(data.shape[1])
+    except Exception as e:
+        errors.error(e)
 
     data = np.ascontiguousarray(data, dtype=np.float32)
 

@@ -1,7 +1,10 @@
-from devices import AudioDeviceManager
-from gui import gui
-from quote import get_quote
-import errors
+try:
+    from devices import AudioDeviceManager
+    from gui import gui
+    from quote import get_quote
+    import errors
+except Exception as e:
+    print(e)
 
 try:
     devices = AudioDeviceManager.get_devices()

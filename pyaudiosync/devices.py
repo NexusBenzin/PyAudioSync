@@ -1,6 +1,9 @@
-import errors
-import re
-import sounddevice as sd
+try:
+    import errors
+    import re
+    import sounddevice as sd
+except Exception as e:
+    print(f"Unable to import sounddevice{e}")
 
 
 class AudioDeviceManager:

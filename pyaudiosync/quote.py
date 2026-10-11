@@ -1,6 +1,8 @@
-import errors
-import requests
-
+try:
+    import errors
+    import requests
+except Exception as e:
+    print(e)
 
 def get_quote():
 

@@ -1,4 +1,7 @@
-import customtkinter
+try:
+    import customtkinter
+except Exception as e:
+    print(e)
 
 def error(msg = "Error: Null"):
     try:

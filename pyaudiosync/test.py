@@ -4,7 +4,7 @@ try:
     import threading
     import soundfile as sf
     import sounddevice as sd
-except Exception as e
+except Exception as e:
     errors.error(f"Error {e}")
 
 global_lock = threading.Lock()
