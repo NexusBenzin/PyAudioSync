@@ -1,3 +1,7 @@
+# PyAudioSync is now moved to a PyAudioSync-Android repository
+The android version also runs on linux and windows
+
+
 # 🎵 PyAudioSync
 
 > A Python application for syncing audio playback across multiple devices with real-time equalization and advanced routing configuration.
